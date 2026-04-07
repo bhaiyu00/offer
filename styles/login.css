@@ -103,6 +103,12 @@
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
     position: relative;
     overflow: hidden;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .login-btn::before {

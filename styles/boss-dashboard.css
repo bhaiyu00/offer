@@ -183,11 +183,25 @@
     transition: all 0.2s ease;
     font-size: 0.85rem;
     margin-right: 0.5rem;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
-.action-btn:hover {
+.action-btn:hover:not(:disabled) {
     background: rgba(99, 102, 241, 0.2);
     border-color: #6366f1;
+}
+
+.action-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Project Filter Buttons */

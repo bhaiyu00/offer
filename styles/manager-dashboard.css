@@ -347,10 +347,25 @@
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.2s ease;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
-.calendar-control button:hover {
+.calendar-control button:hover:not(:disabled) {
     background: rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+}
+
+.calendar-control button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.calendar-control button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #currentMonth {
@@ -452,10 +467,25 @@
     cursor: pointer;
     font-size: 0.85rem;
     transition: all 0.2s ease;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
-.leave-action button:hover {
+.leave-action button:hover:not(:disabled) {
     background: rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+}
+
+.leave-action button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.leave-action button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .leave-action button.reject {
