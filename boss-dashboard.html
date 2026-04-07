@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Dashboard - OfficeHub Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/boss-dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">OfficeHub</span>
+                </div>
+                <button class="sidebar-toggle">☰</button>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-item active" data-section="overview">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#employees" class="nav-item" data-section="employees">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">Employees</span>
+                </a>
+                <a href="#performance" class="nav-item" data-section="performance">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Performance</span>
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="#finance" class="nav-item" data-section="finance">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-label">Finance</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-label">Reports</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h2 class="page-title">Dashboard</h2>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <button>🔍</button>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Boss+CEO" alt="Profile">
+                        <span class="user-name">Boss / CEO</span>
+                        <div class="dropdown-menu">
+                            <a href="#profile">Profile</a>
+                            <a href="#settings">Settings</a>
+                            <a href="#" id="quickLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Container -->
+            <div class="content-container">
+
+                <!-- Overview Section -->
+                <section id="overview" class="section active">
+                    <div class="section-header">
+                        <h1>Welcome, Boss</h1>
+                        <p>Full Control Dashboard</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card card-1">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-content">
+                                <h3>Total Employees</h3>
+                                <p class="stat-number" data-value="156">0</p>
+                                <span class="stat-change positive">↑ 12% this month</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-2">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <h3>Active Projects</h3>
+                                <p class="stat-number" data-value="28">0</p>
+                                <span class="stat-change positive">↑ 5 new projects</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-3">
+                            <div class="stat-icon">💼</div>
+                            <div class="stat-content">
+                                <h3>Tasks Completed</h3>
+                                <p class="stat-number" data-value="1347">0</p>
+                                <span class="stat-change positive">↑ 23% increase</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card card-4">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-content">
+                                <h3>Monthly Revenue</h3>
+                                <p class="stat-number">$847K</p>
+                                <span class="stat-change positive">↑ 18% growth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <h3>Department Performance</h3>
+                            <div id="deptChart" class="chart"></div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3>Project Timeline</h3>
+                            <div id="timelineChart" class="chart"></div>
+                        </div>
+                    </div>
+
+                    <!-- Key Insights -->
+                    <div class="insights-section">
+                        <h3>Key Insights & Alerts</h3>
+                        <div class="insights-grid">
+                            <div class="insight-card alert-warning">
+                                <span class="alert-icon">⚠️</span>
+                                <div class="insight-content">
+                                    <h4>Performance Alert</h4>
+                                    <p>2 employees below target this month</p>
+                                    <a href="#employees">View Details →</a>
+                                </div>
+                            </div>
+
+                            <div class="insight-card alert-success">
+                                <span class="alert-icon">🎉</span>
+                                <div class="insight-content">
+                                    <h4>Team Achievement</h4>
+                                    <p>Marketing team exceeded Q2 targets</p>
+                                    <a href="#performance">Learn More →</a>
+                                </div>
+                            </div>
+
+                            <div class="insight-card alert-info">
+                                <span class="alert-icon">📢</span>
+                                <div class="insight-content">
+                                    <h4>Deadline Reminder</h4>
+                                    <p>3 projects due this week</p>
+                                    <a href="#projects">Check Projects →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Employees Section -->
+                <section id="employees" class="section">
+                    <div class="section-header">
+                        <h1>Employee Management</h1>
+                        <button class="btn btn-primary" id="addEmployeeBtn">+ Add Employee</button>
+                    </div>
+
+                    <div class="filter-bar">
+                        <input type="text" placeholder="Search employees...">
+                        <select>
+                            <option>All Departments</option>
+                            <option>Sales</option>
+                            <option>Marketing</option>
+                            <option>Engineering</option>
+                            <option>HR</option>
+                        </select>
+                        <select>
+                            <option>All Status</option>
+                            <option>Active</option>
+                            <option>On Leave</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="employees-table-wrapper">
+                        <table class="employees-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Salary</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeesTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Performance Section -->
+                <section id="performance" class="section">
+                    <div class="section-header">
+                        <h1>Performance Analytics</h1>
+                        <div class="date-range">
+                            <input type="date" id="startDate">
+                            <span>to</span>
+                            <input type="date" id="endDate">
+                            <button class="btn btn-secondary">Filter</button>
+                        </div>
+                    </div>
+
+                    <div class="performance-grid">
+                        <div class="performance-card">
+                            <h3>Top Performers</h3>
+                            <ul id="topPerformers" class="performers-list"></ul>
+                        </div>
+
+                        <div class="performance-card">
+                            <h3>Skills Matrix</h3>
+                            <div id="skillsChart" class="chart"></div>
+                        </div>
+
+                        <div class="performance-card full-width">
+                            <h3>Productivity Score Over Time</h3>
+                            <div id="productivityChart" class="chart"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="section">
+                    <div class="section-header">
+                        <h1>Project Management</h1>
+                        <button class="btn btn-primary" id="newProjectBtn">+ New Project</button>
+                    </div>
+
+                    <div class="project-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Active</button>
+                        <button class="filter-btn">Completed</button>
+                        <button class="filter-btn">On Hold</button>
+                    </div>
+
+                    <div class="projects-grid" id="projectsGrid">
+                        <!-- Dynamic project cards -->
+                    </div>
+                </section>
+
+                <!-- Finance Section -->
+                <section id="finance" class="section">
+                    <div class="section-header">
+                        <h1>Financial Dashboard</h1>
+                    </div>
+
+                    <div class="finance-grid">
+                        <div class="finance-card">
+                            <h3>Payroll</h3>
+                            <p class="amount">$245,300</p>
+                            <p class="label">Monthly Spend</p>
+                        </div>
+
+                        <div class="finance-card">
+                            <h3>Revenue</h3>
+                            <p class="amount">$847,500</p>
+                            <p class="label">This Month</p>
+                        </div>
+
+                        <div class="finance-card">
+                            <h3>Profit Margin</h3>
+                            <p class="amount">35.2%</p>
+                            <p class="label">Current Quarter</p>
+                        </div>
+
+                        <div class="finance-card">
+                            <h3>Budget Usage</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 72%"></div>
+                            </div>
+                            <p>72% of annual budget</p>
+                        </div>
+                    </div>
+
+                    <div class="finance-charts">
+                        <div class="chart-container">
+                            <h3>Revenue vs Expenses</h3>
+                            <div id="revenueExpenseChart" class="chart"></div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3>Department Budget Allocation</h3>
+                            <div id="departmentBudgetChart" class="chart"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="section">
+                    <div class="section-header">
+                        <h1>Reports & Analytics</h1>
+                        <button class="btn btn-primary">Generate Report</button>
+                    </div>
+
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <h3>Monthly Summary</h3>
+                            <p>Complete overview of all operations</p>
+                            <button class="btn btn-secondary">View</button>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Employee Report</h3>
+                            <p>Detailed staff and performance data</p>
+                            <button class="btn btn-secondary">Download</button>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Financial Statement</h3>
+                            <p>Complete financial analysis</p>
+                            <button class="btn btn-secondary">Download</button>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Compliance Report</h3>
+                            <p>Regulatory and legal compliance</p>
+                            <button class="btn btn-secondary">View</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <div class="section-header">
+                        <h1>Settings & Configuration</h1>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Account Settings</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label>Company Name</label>
+                                    <input type="text" value="Your Company">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" value="boss@office.com">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>System Settings</h3>
+                            <div class="settings-option">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Enable Email Notifications
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Enable Performance Alerts
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <label>
+                                    <input type="checkbox">
+                                    Maintenance Mode
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>Access Control</h3>
+                            <p>Manage user permissions</p>
+                            <button class="btn btn-secondary">Manage Roles</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>Backup & Security</h3>
+                            <p>Backup data and security settings</p>
+                            <button class="btn btn-secondary">Backup Now</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add Employee -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Employee</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="employeeForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select required>
+                        <option>Sales</option>
+                        <option>Marketing</option>
+                        <option>Engineering</option>
+                        <option>HR</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="number" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="closeModalBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-common.js"></script>
+    <script src="js/boss-dashboard.js"></script>
+</body>
+</html>

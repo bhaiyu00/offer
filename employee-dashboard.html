@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - OfficeHub Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/employee-dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">OfficeHub</span>
+                </div>
+                <button class="sidebar-toggle">☰</button>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active" data-section="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Home</span>
+                </a>
+                <a href="#tasks" class="nav-item" data-section="tasks">
+                    <span class="nav-icon">✓</span>
+                    <span class="nav-label">My Tasks</span>
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="#time-tracking" class="nav-item" data-section="time-tracking">
+                    <span class="nav-icon">⏱️</span>
+                    <span class="nav-label">Time Tracking</span>
+                </a>
+                <a href="#leave" class="nav-item" data-section="leave">
+                    <span class="nav-icon">🏖️</span>
+                    <span class="nav-label">Leave</span>
+                </a>
+                <a href="#performance" class="nav-item" data-section="performance">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-label">Performance</span>
+                </a>
+                <a href="#profile" class="nav-item" data-section="profile">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-label">Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h2 class="page-title">My Dashboard</h2>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <button>🔍</button>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Employee" alt="Profile">
+                        <span class="user-name">Employee</span>
+                        <div class="dropdown-menu">
+                            <a href="#profile">Profile</a>
+                            <a href="#" id="quickLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Container -->
+            <div class="content-container">
+
+                <!-- Home Section -->
+                <section id="home" class="section active">
+                    <div class="section-header">
+                        <h1>Welcome to Your Dashboard</h1>
+                        <p id="greeting">Good to see you!</p>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">✓</div>
+                            <div class="stat-content">
+                                <h3>Tasks Today</h3>
+                                <p class="stat-number" data-value="5">0</p>
+                                <span class="stat-change">2 completed</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-content">
+                                <h3>Hours Logged</h3>
+                                <p class="stat-number">7.5h</p>
+                                <span class="stat-change">Today</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">📋</div>
+                            <div class="stat-content">
+                                <h3>Active Projects</h3>
+                                <p class="stat-number" data-value="3">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <h3>Performance</h3>
+                                <p class="stat-number">92%</p>
+                                <span class="stat-change positive">↑ On track</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Overview -->
+                    <div class="overview-section">
+                        <div class="today-tasks">
+                            <h3>Today's Tasks</h3>
+                            <div id="todayTasksList" class="tasks-list">
+                                <!-- Dynamic tasks -->
+                            </div>
+                        </div>
+
+                        <div class="schedule-preview">
+                            <h3>Today's Schedule</h3>
+                            <div id="todaySchedule" class="schedule-list">
+                                <!-- Dynamic schedule -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="activity-section">
+                        <h3>Recent Activity</h3>
+                        <div id="activityList" class="activity-list">
+                            <!-- Dynamic activities -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tasks Section -->
+                <section id="tasks" class="section">
+                    <div class="section-header">
+                        <h1>My Tasks</h1>
+                        <button class="btn btn-primary" id="newTaskBtn">+ Add Task</button>
+                    </div>
+
+                    <div class="task-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Pending</button>
+                        <button class="filter-btn">In Progress</button>
+                        <button class="filter-btn">Completed</button>
+                    </div>
+
+                    <div class="kanban-board">
+                        <div class="kanban-column" data-status="pending">
+                            <div class="column-header">
+                                <h3>Pending</h3>
+                                <span class="task-count">0</span>
+                            </div>
+                            <div class="tasks-column" id="pendingTasks">
+                                <!-- Dynamic tasks -->
+                            </div>
+                        </div>
+
+                        <div class="kanban-column" data-status="in-progress">
+                            <div class="column-header">
+                                <h3>In Progress</h3>
+                                <span class="task-count">0</span>
+                            </div>
+                            <div class="tasks-column" id="inProgressTasks">
+                                <!-- Dynamic tasks -->
+                            </div>
+                        </div>
+
+                        <div class="kanban-column" data-status="completed">
+                            <div class="column-header">
+                                <h3>Completed</h3>
+                                <span class="task-count">0</span>
+                            </div>
+                            <div class="tasks-column" id="completedTasks">
+                                <!-- Dynamic tasks -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="section">
+                    <div class="section-header">
+                        <h1>My Projects</h1>
+                    </div>
+
+                    <div class="projects-list" id="projectsList">
+                        <!-- Dynamic projects -->
+                    </div>
+                </section>
+
+                <!-- Time Tracking Section -->
+                <section id="time-tracking" class="section">
+                    <div class="section-header">
+                        <h1>Time Tracking</h1>
+                    </div>
+
+                    <div class="time-tracking-section">
+                        <div class="timer-card">
+                            <h3>Time Tracker</h3>
+                            <div class="timer-display" id="timerDisplay">00:00:00</div>
+                            <div class="timer-controls">
+                                <button class="btn btn-primary" id="startTimerBtn">Start</button>
+                                <button class="btn btn-secondary" id="pauseTimerBtn" disabled>Pause</button>
+                                <button class="btn btn-secondary" id="stopTimerBtn" disabled>Stop</button>
+                            </div>
+                            <div class="timer-info">
+                                <label for="projectSelect">Select Project:</label>
+                                <select id="projectSelect">
+                                    <option>Project A</option>
+                                    <option>Project B</option>
+                                    <option>Project C</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="weekly-hours">
+                            <h3>Weekly Hours</h3>
+                            <div id="weeklyChart" class="chart"></div>
+                        </div>
+                    </div>
+
+                    <div class="time-logs">
+                        <h3>Time Log History</h3>
+                        <table class="time-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Project</th>
+                                    <th>Task</th>
+                                    <th>Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timeLogsBody">
+                                <!-- Dynamic logs -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Leave Section -->
+                <section id="leave" class="section">
+                    <div class="section-header">
+                        <h1>Leave Management</h1>
+                        <button class="btn btn-primary" id="applyLeaveBtn">+ Apply Leave</button>
+                    </div>
+
+                    <div class="leave-balance">
+                        <div class="balance-card">
+                            <h3>Annual Leave</h3>
+                            <p class="balance-amount">12 / 20 days</p>
+                            <div class="balance-bar">
+                                <div class="used" style="width: 60%"></div>
+                            </div>
+                        </div>
+
+                        <div class="balance-card">
+                            <h3>Sick Leave</h3>
+                            <p class="balance-amount">4 / 10 days</p>
+                            <div class="balance-bar">
+                                <div class="used" style="width: 40%"></div>
+                            </div>
+                        </div>
+
+                        <div class="balance-card">
+                            <h3>Casual Leave</h3>
+                            <p class="balance-amount">2 / 5 days</p>
+                            <div class="balance-bar">
+                                <div class="used" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leave-history">
+                        <h3>Leave History</h3>
+                        <div id="leaveHistoryList" class="history-list">
+                            <!-- Dynamic leave records -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Section -->
+                <section id="performance" class="section">
+                    <div class="section-header">
+                        <h1>My Performance</h1>
+                    </div>
+
+                    <div class="performance-overview">
+                        <div class="performance-card">
+                            <h3>Overall Score</h3>
+                            <div class="score-circle">
+                                <span class="score-number">92%</span>
+                            </div>
+                            <p>Excellent performance</p>
+                        </div>
+
+                        <div class="performance-card">
+                            <h3>Task Completion</h3>
+                            <div class="progress-ring">
+                                <svg viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50" class="progress-background"></circle>
+                                    <circle cx="60" cy="60" r="50" class="progress-fill" style="stroke-dashoffset: 15"></circle>
+                                </svg>
+                                <span class="ring-label">87%</span>
+                            </div>
+                        </div>
+
+                        <div class="performance-card">
+                            <h3>Quality Rating</h3>
+                            <div class="rating">
+                                ★★★★★
+                            </div>
+                            <p>4.5 / 5 stars</p>
+                        </div>
+                    </div>
+
+                    <div class="performance-details">
+                        <div class="details-card">
+                            <h3>Performance Trend</h3>
+                            <div id="performanceChart" class="chart"></div>
+                        </div>
+
+                        <div class="details-card">
+                            <h3>Manager Feedback</h3>
+                            <div class="feedback-list" id="feedbackList">
+                                <!-- Dynamic feedback -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Section -->
+                <section id="profile" class="section">
+                    <div class="section-header">
+                        <h1>My Profile</h1>
+                    </div>
+
+                    <div class="profile-section">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <img src="https://ui-avatars.com/api/?name=Employee" alt="Profile" class="profile-pic">
+                                <div class="profile-intro">
+                                    <h2>John Doe</h2>
+                                    <p>Senior Developer</p>
+                                    <p class="department">Engineering Department</p>
+                                </div>
+                            </div>
+
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <label>Email</label>
+                                    <p>employee@office.com</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Phone</label>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Joining Date</label>
+                                    <p>January 15, 2022</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Manager</label>
+                                    <p>Sarah Smith</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>Account Settings</h3>
+                            <form id="profileForm">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" value="John Doe" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Change Password</label>
+                                    <input type="password" placeholder="New password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" placeholder="Confirm password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-common.js"></script>
+    <script src="js/employee-dashboard.js"></script>
+</body>
+</html>

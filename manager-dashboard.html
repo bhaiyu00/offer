@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - OfficeHub Pro</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/manager-dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span class="logo-text">OfficeHub</span>
+                </div>
+                <button class="sidebar-toggle">☰</button>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-item active" data-section="overview">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#team" class="nav-item" data-section="team">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">My Team</span>
+                </a>
+                <a href="#tasks" class="nav-item" data-section="tasks">
+                    <span class="nav-icon">✓</span>
+                    <span class="nav-label">Tasks</span>
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-label">Projects</span>
+                </a>
+                <a href="#schedule" class="nav-item" data-section="schedule">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-label">Schedule</span>
+                </a>
+                <a href="#reports" class="nav-item" data-section="reports">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Reports</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h2 class="page-title">Dashboard</h2>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <button>🔍</button>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Manager" alt="Profile">
+                        <span class="user-name">Manager</span>
+                        <div class="dropdown-menu">
+                            <a href="#profile">Profile</a>
+                            <a href="#settings">Settings</a>
+                            <a href="#" id="quickLogout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Container -->
+            <div class="content-container">
+
+                <!-- Overview Section -->
+                <section id="overview" class="section active">
+                    <div class="section-header">
+                        <h1>Manager Dashboard</h1>
+                        <p>Team metrics and performance overview</p>
+                    </div>
+
+                    <!-- Team Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-content">
+                                <h3>Team Members</h3>
+                                <p class="stat-number" data-value="12">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <h3>Completed Tasks</h3>
+                                <p class="stat-number" data-value="847">0</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-content">
+                                <h3>Productivity</h3>
+                                <p class="stat-number">87%</p>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <h3>Active Projects</h3>
+                                <p class="stat-number" data-value="8">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Overview -->
+                    <div class="quick-overview">
+                        <div class="chart-container">
+                            <h3>Team Performance</h3>
+                            <div id="teamChart" class="chart"></div>
+                        </div>
+
+                        <div class="upcoming-tasks">
+                            <h3>Upcoming Tasks</h3>
+                            <ul id="upcomingList" class="tasks-list">
+                                <!-- Dynamic content -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- My Team Section -->
+                <section id="team" class="section">
+                    <div class="section-header">
+                        <h1>My Team</h1>
+                        <button class="btn btn-primary" id="addTeamMemberBtn">+ Add Member</button>
+                    </div>
+
+                    <div class="team-grid" id="teamGrid">
+                        <!-- Dynamic team cards -->
+                    </div>
+                </section>
+
+                <!-- Tasks Section -->
+                <section id="tasks" class="section">
+                    <div class="section-header">
+                        <h1>Task Management</h1>
+                        <button class="btn btn-primary" id="newTaskBtn">+ New Task</button>
+                    </div>
+
+                    <div class="task-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">My Tasks</button>
+                        <button class="filter-btn">Team Tasks</button>
+                        <button class="filter-btn">Overdue</button>
+                    </div>
+
+                    <div class="tasks-container" id="tasksContainer">
+                        <!-- Dynamic tasks -->
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="projects" class="section">
+                    <div class="section-header">
+                        <h1>Projects</h1>
+                        <button class="btn btn-primary" id="newProjectBtn">+ New Project</button>
+                    </div>
+
+                    <div class="projects-list" id="projectsList">
+                        <!-- Dynamic projects -->
+                    </div>
+                </section>
+
+                <!-- Schedule Section -->
+                <section id="schedule" class="section">
+                    <div class="section-header">
+                        <h1>Team Schedule</h1>
+                    </div>
+
+                    <div class="calendar-section">
+                        <div class="calendar-control">
+                            <button>&lt;</button>
+                            <h3 id="currentMonth">January 2026</h3>
+                            <button>&gt;</button>
+                        </div>
+                        <div id="calendar" class="calendar"></div>
+                    </div>
+
+                    <div class="leaves-section">
+                        <h3>Team Leave Requests</h3>
+                        <div id="leavesList" class="leaves-list">
+                            <!-- Dynamic leaves -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="section">
+                    <div class="section-header">
+                        <h1>Team Reports</h1>
+                    </div>
+
+                    <div class="report-cards">
+                        <div class="report-card">
+                            <h3>Performance Report</h3>
+                            <p>Team performance metrics</p>
+                            <button class="btn btn-secondary">View</button>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Attendance Report</h3>
+                            <p>Monthly attendance summary</p>
+                            <button class="btn btn-secondary">Download</button>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Productivity Report</h3>
+                            <p>Task completion and efficiency</p>
+                            <button class="btn btn-secondary">View</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <div class="section-header">
+                        <h1>Settings</h1>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Team Settings</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" value="Engineering" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>Team Name</label>
+                                    <input type="text" value="Engineering Team">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>Notifications</h3>
+                            <div class="settings-option">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Task Reminders
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Daily Report
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-common.js"></script>
+    <script src="js/manager-dashboard.js"></script>
+</body>
+</html>
